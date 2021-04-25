@@ -3,10 +3,15 @@ console.log('***** Cart Functions *****');
 // We want to see how you are testing your code!!!
 
 let basket =[];
+const maxItems = 5;
 
 function addItem(item){
-  basket.push(item)
-  return true;
+  if(isFull()){
+    return false;
+  } else {
+    basket.push(item)
+    return true;
+  }
 }
 
  function listItems(){
@@ -19,10 +24,37 @@ function empty(){
   basket = [];
 }
 
+function isFull(){
+  if(basket.length<maxItems){
+    return false;
+  } else return true;
+}
+
+function removeItem(item){
+const i = basket.indexOf(item)
+if (i > 0){
+    return basket.splice(i, 1);
+  } else {
+    console.log('item does not exist')
+    return null;
+  }
+}
+
+
+
+
+// testing
 addItem('shirt')
 addItem('pants')
 addItem('jacket')
+addItem('lotion')
+addItem('snack')
+addItem('socks')
 listItems()
-empty()
+removeItem('pants')
+removeItem('shoes')
 
+
+console.log(`basket is ${basket}`)
+empty()
 console.log(`basket is ${basket}`)
